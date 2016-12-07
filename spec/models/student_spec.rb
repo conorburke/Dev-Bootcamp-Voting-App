@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
-  let(:student) { Student.new(first_name: "Tae", last_name: "Yun", email: "tj@gmail.com") }
+  let(:student) { Student.create(first_name: "Tae", last_name: "Yun", email: "tj@gmail.com") }
+  let(:idea) { Idea.create(title: "new idea", student_id: student.id) }
 
   describe "attributes" do
     it 'has a first_name' do
@@ -26,5 +27,22 @@ RSpec.describe Student, type: :model do
     it 'has a full_name' do
       expect(student.full_name).to eq "Tae Yun"
     end
+  end
+
+  describe "associations" do
+    it 'has many ideas' do
+      expect(student.ideas.first.title).to eq "new idea"
+    end
+
+    it 'has many votes' do
+      vote = Vote.create(student_id: student.id, idea_id: idea.id)
+      expect(student.votes).to include(vote)
+    end
+
+    # it 'has many choices' do
+    #   student.save
+    #   student.ideas.build(title: "new idea")
+    #   expect(student.ideas.first.title).to eq "new idea"
+    # end
   end
 end

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20161207224800) do
 
   create_table "ideas", force: :cascade do |t|
     t.string   "title",      null: false
-    t.integer  "creator_id"
+    t.integer  "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
