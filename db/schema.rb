@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20161207224800) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "student_id"
     t.integer  "idea_id"
     t.integer  "round"
     t.datetime "created_at", null: false

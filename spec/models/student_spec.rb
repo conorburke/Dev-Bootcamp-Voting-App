@@ -31,7 +31,7 @@ RSpec.describe Student, type: :model do
 
   describe "associations" do
     it 'has many ideas' do
-      expect(student.ideas.first.title).to eq "new idea"
+      expect(student.ideas).to include(idea)
     end
 
     it 'has many votes' do
@@ -39,10 +39,9 @@ RSpec.describe Student, type: :model do
       expect(student.votes).to include(vote)
     end
 
-    # it 'has many choices' do
-    #   student.save
-    #   student.ideas.build(title: "new idea")
-    #   expect(student.ideas.first.title).to eq "new idea"
-    # end
+    it 'has many choices' do
+      choice = Choice.create(student_id: student.id, idea_id: idea.id, preference_level: 1)
+      expect(student.choices).to include(choice)
+    end
   end
 end
