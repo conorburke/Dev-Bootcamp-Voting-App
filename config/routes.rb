@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get '/ideas/new' => "ideas#new"
   post '/ideas' => "ideas#create"
   resources :sessions, only: [:new, :create, :destroy]
-  # root 'ideas#index'
+  resources :teachers, only: [:show]
 
 end

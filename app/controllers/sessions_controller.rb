@@ -3,13 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = Student.find_by_email(params[:session][:email]) # || Teacher.find_by_email(params[:session][:email])
+    @user = Student.find_by_email(params[:session][:email]) || Teacher.find_by_email(params[:session][:email])
     if @user && @user.authenticate(params[:session][:access_code])
       session[:user_id] = @user.id
       session[:user_type] = @user.class.to_s
-      redirect_to ideas_path, notice: "User has successfully logged in."
+      flash[:sucess] = "User has successfully logged in."
+      redirect_to ideas_path
     else
-      render :new, notice: "Email and password does not match."
+      flash[:fail] = "Email and password does not match."
+      redirect_to new_session_path
     end
   end
 

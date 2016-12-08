@@ -11,8 +11,18 @@
       <%= f.label "Password" %>
       <%= f.password_field :access_code, class:"form-control" %><br>
     </div>
+
+    <% if flash[:fail] %>
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <%= flash[:fail] %>
+      </div>
+    <% end %>
+
     <div class="btn-container" align="center">
       <%= f.submit "Login", class: "btn btn-primary btn-lg medium-btn" %>
     </div>
+
   <% end %>
 </div>

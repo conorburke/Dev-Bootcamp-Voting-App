@@ -1,6 +1,8 @@
-<div class="create-idea-btn" align="center">
-  <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
-</div>
+<% if current_user.is_a? Student %>
+  <div class="create-idea-btn" align="center">
+    <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
+  </div>
+<% end %>
 
 <div class='table-container'>
   <div class ="jform"></div>

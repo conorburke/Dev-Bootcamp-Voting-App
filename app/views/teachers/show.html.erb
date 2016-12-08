@@ -1,0 +1,12 @@
+<div>
+  <h2><% current_user.full_name %></h2>
+  <h3>Cohorts</h3>
+  <ul>
+    <% @cohorts.each do |cohort| %>
+      <li>
+        <%= link_to cohort.name, root_path %>
+        <span><%= "active" unless cohort.closed? %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
