@@ -15,15 +15,32 @@ ActiveRecord::Schema.define(version: 20161207224800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "choices", force: :cascade do |t|
+    t.integer  "student_id",       null: false
+    t.integer  "idea_id",          null: false
+    t.integer  "preference_level", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "ideas", force: :cascade do |t|
     t.string   "title",      null: false
-    t.integer  "creator_id"
+    t.integer  "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "students", force: :cascade do |t|
+    t.string   "first_name",  null: false
+    t.string   "last_name",   null: false
+    t.string   "email",       null: false
+    t.string   "access_code", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "votes", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "student_id"
     t.integer  "idea_id"
     t.integer  "round"
     t.datetime "created_at", null: false
