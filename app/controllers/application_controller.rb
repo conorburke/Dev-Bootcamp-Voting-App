@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   def current_user
     if session[:user_type] == "Student"
       Student.find_by_id(session[:user_id])
-    else
-      Teacher.find_by_id(session[:user_id])
+    # else
+    #   Teacher.find_by_id(session[:user_id])
     end
   end
 
