@@ -1,4 +1,6 @@
 class IdeasController < ApplicationController
+  before_action :require_login
+
   def index
     @ideas = Idea.all
   end
@@ -8,7 +10,8 @@ class IdeasController < ApplicationController
   end
 
   def create
-    @idea = Idea.new(idea_params)
+    @student = current_user
+    @idea = @student.ideas.build(idea_params)
     if @idea.save
       redirect_to ideas_path
     else
@@ -19,7 +22,13 @@ class IdeasController < ApplicationController
   private
 
     def idea_params
-      params.require(:idea).permit(:title, :student_id)
+      params.require(:idea).permit(:title)
     end
 
+    def require_login
+      unless current_user
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to new_session_path
+      end
+    end
 end
