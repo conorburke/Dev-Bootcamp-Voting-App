@@ -23,9 +23,9 @@
         <td class="text-center idea-listing"><span class="title-listing"><%= idea.title %><span></td>
 
         <% if !session[:selection].include? idea.id %>
-          <td align="center" class="vote-col"><a href="/ideas/select/<%= idea.id %>" class= "btn btn-default btn-lg vote-btn">Vote</a></td>
+          <td align="center" class="vote-col"><a href="/sessions/select/<%= idea.id %>" class= "btn btn-default btn-lg vote-btn">Vote</a></td>
         <% else %>
-          <td align="center" class="vote-col"><a href="/ideas/select/<%= idea.id %>" class= "btn btn-success btn-lg vote-btn">Vote</a></td>
+          <td align="center" class="vote-col"><a href="/sessions/select/<%= idea.id %>" class= "btn btn-success btn-lg vote-btn">Vote</a></td>
         <% end %>
 
       </tr>
