@@ -4,6 +4,6 @@ class Choice < ApplicationRecord
 
   validates :student, :preference_level, :idea, presence: true
   validates :preference_level, numericality: { greater_than_or_equal_to: 1 },
-            uniqueness: { scope: :student, message: "cannot be the same" }
-  validates :idea, uniqueness: { scope: :student, message: "should not be chosen more than once"}
+            uniqueness: { scope: :student_id, message: "cannot be the same" }
+  validates :idea, uniqueness: { scope: :student_id, message: "should not be chosen more than once"}
 end
