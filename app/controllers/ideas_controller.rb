@@ -31,8 +31,7 @@ class IdeasController < ApplicationController
     else
       session[:selection] = [@idea.id]
     end
-    # render 'index'
-    redirect_to 'ideas_path'
+    redirect_to ideas_path
   end
 
   private

@@ -1,6 +1,18 @@
-<div class="create-idea-btn" align="center">
-  <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
-</div>
+
+<!-- <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"> -->
+    <div class="create-idea-btn" align="center">
+      <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
+    <!-- </div> -->
+  <!-- </div> -->
+  <!-- <div class="col-md-4" align="center"> -->
+    <div class="alert alert-info remain-box" role="alert">Remaining Votes: <%= 3 - session[:selection].count %></div>
+  <!-- </div> -->
+<!-- </div> -->
+
+
+
 
 <div class='table-container'>
   <div class ="jform"></div>
@@ -16,7 +28,7 @@
           <% if !session[:selection].include? idea.id %>
             <i class="fa fa-lightbulb-o fa-3x bulb-btn" aria-hidden="true"></i>
           <% else %>
-            <i style="color:yellow;" class="fa fa-lightbulb-o fa-3x bulb-btn" aria-hidden="true"></i>
+            <i class="fa fa-lightbulb-o fa-3x bulb-btn yellow-bulb" aria-hidden="true"></i>
           <% end %>
         </td>
 
