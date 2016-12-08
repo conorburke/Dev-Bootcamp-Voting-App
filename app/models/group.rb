@@ -4,4 +4,5 @@ class Group < ApplicationRecord
   has_one :cohort, through: :students
 
   validates :name, presence: true
+  validates :idea, uniquness: true
 end
