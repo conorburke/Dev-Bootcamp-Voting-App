@@ -89,5 +89,10 @@ RSpec.describe Cohort, type: :model do
     it 'returns 0 for other phases' do
       expect(cohort.current_round).to eq 0
     end
+
+    it 'returns true if closed' do
+      cohort.update_attribute(:current_phase, "finished")
+      expect(cohort.closed?).to eq true
+    end
   end
 end

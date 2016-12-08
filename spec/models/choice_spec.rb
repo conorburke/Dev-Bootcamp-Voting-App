@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Choice, type: :model do
-  let(:student) { Student.create(first_name: "Tae", last_name: "Yun", email: "tj@gmail.com") }
+  let(:city) { City.create(name: "San Diego") }
+  let(:cohort) { Cohort.create(name: "Chipmunks", city_id: city.id) }
+  let(:student) { Student.create(first_name: "Tae", last_name: "Yun", email: "tj@gmail.com", cohort_id: cohort.id) }
   let(:idea) { Idea.create(title: "new idea", student_id: student.id) }
   let(:choice) { Choice.create(student_id: student.id, idea_id: idea.id, preference_level: 1) }
 
@@ -29,7 +31,7 @@ RSpec.describe Choice, type: :model do
     it 'must have a preference_level' do
       invalid_choice = Choice.create(student_id: student.id, idea_id: idea.id)
       expect(invalid_choice.errors[:preference_level]).to include "can't be blank"
-    end    
+    end
 
     it 'must has a preference level greater or equal to 1' do
       invalid_choice = Choice.create(student_id: student.id, idea_id: idea.id, preference_level: 0)

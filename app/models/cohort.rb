@@ -26,4 +26,8 @@ class Cohort < ApplicationRecord
       self.rounds.count
     end
   end
+
+  def closed?
+    self.current_phase == "finished"
+  end
 end
