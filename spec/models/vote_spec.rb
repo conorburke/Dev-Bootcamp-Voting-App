@@ -7,25 +7,29 @@ RSpec.describe Vote, type: :model do
   let(:vote) {Vote.create(student_id: student.id, idea_id: idea.id, round: 1)}
 
   describe "attributes" do
-    it 'has a title' do 
+    it 'has a title' do
       expect(idea.title).to eq "idea"
     end
 
     it 'has a student_id' do
       expect(idea.student_id).to eq(student.id)
     end
+
+    it 'has a round number' do
+      expect(idea.round).to eq 1
+    end
   end
 
-  describe "associations" do 
-    it 'has a student with a first name' do 
+  describe "associations" do
+    it 'has a student with a first name' do
       expect(idea.student.first_name).to eq("Conor")
     end
 
-    it 'has a student with a last name' do 
+    it 'has a student with a last name' do
       expect(idea.student.last_name).to eq("Burke")
     end
 
-    it 'has a student with a email' do 
+    it 'has a student with a email' do
       expect(idea.student.email).to eq("conor@gmail.com")
     end
 
@@ -33,8 +37,17 @@ RSpec.describe Vote, type: :model do
       expect(idea.choices).to include(choice)
     end
 
-    it 'has votes' do 
+    it 'has votes' do
       expect(idea.votes).to include(vote)
+    end
+  end
+
+  describe "validations" do
+    xit 'student can only vote 3 times per round' do
+
+    end
+
+    xit 'student cannot vote for same idea in same round' do
     end
   end
 
