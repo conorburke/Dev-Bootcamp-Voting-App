@@ -3,10 +3,14 @@ require 'rails_helper'
 RSpec.describe Cohort, type: :model do
   let(:city) { City.create(name: "San Diego") }
   let(:cohort) { Cohort.create(name: "chipmunks-2016", city_id: city.id) }
-  
+
   describe "attributes" do
     it 'has a name' do
       expect(cohort.name).to eq "chipmunks-2016"
+    end
+
+    it 'has a current phase default to ideas' do
+      expect(cohort.current_phase).to eq "ideas"
     end
   end
 
@@ -27,7 +31,7 @@ RSpec.describe Cohort, type: :model do
 
     it 'has many rounds' do
       round = Round.create(cohort_id: cohort.id)
-      expect(cohort.rounds.first).to eq round
+      expect(cohort.rounds).to include round
     end
 
     it 'has many ideas' do
@@ -60,6 +64,30 @@ RSpec.describe Cohort, type: :model do
       valid_cohort = Cohort.create(name: "chipmunks-2016", city_id: city.id)
       invalid_cohort = Cohort.create(name: "chipmunks-2016", city_id: city.id)
       expect(invalid_cohort.errors[:name].first).to eq "has already been taken"
+    end
+  end
+
+  describe "#next_phase" do
+    it 'switch cohort to next phase' do
+      cohort.next_phase
+      expect(cohort.current_phase).to eq "voting"
+    end
+
+    it 'stops changing phase when cohort is finished' do
+      cohort.update_attribute(:current_phase, "finished")
+      cohort.next_phase
+      expect(cohort.current_phase).to eq "finished"
+    end
+  end
+
+  describe "#current_round" do
+    it 'returns current round if cohort is in voting' do
+      cohort.next_phase
+      expect(cohort.current_round).to eq 1
+    end
+
+    it 'returns 0 for other phases' do
+      expect(cohort.current_round).to eq 0
     end
   end
 end
