@@ -5,7 +5,8 @@ class Student < ApplicationRecord
   has_many :votes
   has_many :ideas # ideas pitched
 
-  validates :first_name, :last_name, :email, :access_code, presence: true
+  validates :first_name, :last_name, :email, :cohort, presence: true
+  validates :access_code, :email, uniqueness: true
 
   before_validation :generate_access_code, on: :create
 
@@ -22,12 +23,12 @@ class Student < ApplicationRecord
   # -- Display ----------------------------------------
 
   def full_name
-    self.first_name + " " + self.last_name
+    self.first_name.capitalize + " " + self.last_name.capitalize
   end
 
   # -- Algorithm --------------------------------------
 
   def assigned?
-    self.group
+    !!(self.group)
   end
 end

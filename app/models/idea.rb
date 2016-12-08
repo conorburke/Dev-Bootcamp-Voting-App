@@ -4,9 +4,9 @@ class Idea < ApplicationRecord
   has_one :group
   has_many :votes
   has_many :choices
-  has_many :rounds, through: :votes
+  has_many :rounds, through: :votes, source: :round
 
-  validates :title, presence: true
+  validates :title, :student, :cohort, presence: true
   validate :unique_in_cohort
 
   def unique_in_cohort
