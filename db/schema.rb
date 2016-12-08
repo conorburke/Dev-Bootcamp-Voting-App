@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207224800) do
+ActiveRecord::Schema.define(version: 20161208035937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,39 @@ ActiveRecord::Schema.define(version: 20161207224800) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "ideas", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.integer  "student_id", null: false
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cohorts", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "idea_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ideas", force: :cascade do |t|
+    t.string   "title",                  null: false
+    t.integer  "student_id",             null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "active",     default: 1
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer  "voting_round", default: 1, null: false
+    t.integer  "cohort_id",                null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -37,14 +65,26 @@ ActiveRecord::Schema.define(version: 20161207224800) do
     t.string   "access_code", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "cohort_id"
+    t.integer  "group_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string   "first_name",  null: false
+    t.string   "last_name",   null: false
+    t.string   "email",       null: false
+    t.string   "access_code"
+    t.integer  "city_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "votes", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "idea_id"
-    t.integer  "round"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "round_id"
   end
 
 end
