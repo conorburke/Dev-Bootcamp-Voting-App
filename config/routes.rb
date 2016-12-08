@@ -5,5 +5,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   root :to => "home#index"
+  get '/ideas' => "ideas#index"
+  get '/ideas/new' => "ideas#new"
+  post '/ideas' => "ideas#create"
+
 
 end

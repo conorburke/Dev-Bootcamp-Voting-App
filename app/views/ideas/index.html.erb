@@ -1,1 +1,9 @@
-hey jordan
+<h1>DBC Final Project Ideas</h1>
+
+<ul>
+  <% @ideas.each do |idea| %>
+    <li><%= idea.title %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Create Idea", ideas_new_path %>
