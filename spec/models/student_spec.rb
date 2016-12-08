@@ -34,14 +34,14 @@ RSpec.describe Student, type: :model do
       expect(student.ideas).to include(idea)
     end
 
-    it 'has many votes' do
-      vote = Vote.create(student_id: student.id, idea_id: idea.id)
-      expect(student.votes).to include(vote)
-    end
+    # it 'has many votes' do
+    #   vote = Vote.create(student_id: student.id, idea_id: idea.id)
+    #   expect(student.votes).to include(vote)
+    # end
 
-    it 'has many choices' do
-      choice = Choice.create(student_id: student.id, idea_id: idea.id, preference_level: 1)
-      expect(student.choices).to include(choice)
-    end
+    # it 'has many choices' do
+    #   choice = Choice.create(student_id: student.id, idea_id: idea.id, preference_level: 1)
+    #   expect(student.choices).to include(choice)
+    # end
   end
 end
