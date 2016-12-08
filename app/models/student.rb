@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+  belongs_to :group, optional: true
   has_many :choices
   has_many :votes
   has_many :ideas # ideas pitched
@@ -8,14 +9,24 @@ class Student < ApplicationRecord
   before_validation :generate_access_code, on: :create
 
   def generate_access_code
-    self.access_code = "1234"
+    if !self.access_code && self.first_name && self.last_name
+      self.access_code = (self.first_name + self.last_name[0]).downcase
+    end
   end
+
+  def authenticate(password)
+    self if self.access_code == password
+  end
+
+  # -- Display ----------------------------------------
 
   def full_name
     self.first_name + " " + self.last_name
   end
 
-  def authenticate(password)
-    self if self.access_code == password
+  # -- Algorithm --------------------------------------
+
+  def assigned?
+    self.group
   end
 end
