@@ -7,4 +7,8 @@ class Idea < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true
   validates :student, presence: true
+
+  def active?
+    self.active == 1
+  end
 end

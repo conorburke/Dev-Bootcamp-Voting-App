@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20161208035937) do
     t.integer  "student_id",             null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "active",     default: 0
+    t.integer  "active",     default: 1
   end
 
   create_table "rounds", force: :cascade do |t|
