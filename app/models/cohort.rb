@@ -7,4 +7,5 @@ class Cohort < ApplicationRecord
   has_many :groups, through: :ideas, source: :group
 
   validates :name, :city, presence: true
+  validates :name, uniqueness: { scope: :city_id }
 end

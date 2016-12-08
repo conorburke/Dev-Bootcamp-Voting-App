@@ -44,4 +44,22 @@ RSpec.describe Cohort, type: :model do
       expect(cohort.groups.first).to eq group
     end
   end
+
+  describe "validations" do
+    it 'must have a name' do
+      invalid_cohort = Cohort.create(city_id: city.id)
+      expect(invalid_cohort.errors[:name].first).to eq "can't be blank"
+    end
+
+    it 'must belongs to a valid city' do
+      invalid_cohort = Cohort.create(city_id: 3)
+      expect(invalid_cohort.errors[:city].last).to eq "can't be blank"
+    end
+
+    it 'must has a unique name within the city' do
+      valid_cohort = Cohort.create(name: "chipmunks-2016", city_id: city.id)
+      invalid_cohort = Cohort.create(name: "chipmunks-2016", city_id: city.id)
+      expect(invalid_cohort.errors[:name].first).to eq "has already been taken"
+    end
+  end
 end
