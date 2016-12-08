@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :group, optional: true
+  belongs_to :cohort
   has_many :choices
   has_many :votes
   has_many :ideas # ideas pitched
