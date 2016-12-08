@@ -1,24 +1,20 @@
-# README
+# 3CT
+Client Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Project Name
+CCCT
+##Names and github handle for people on the team
 
-Things you may want to cover:
+- [Christopher Mendoza](https://github.com/wushuchris)
+- [Conor Burke](https://github.com/conorburke)
+- [Chelsey Lin](https://github.com/chelseylin)
+- [Tae Jun Yun](https://github.com/yuntsj)
 
-* Ruby version
+##Description of project
 
-* System dependencies
+###Model Schema
+![](readme-assets/ccct_schema.png)
 
-* Configuration
+##How to install the code locally
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##How to use the app
