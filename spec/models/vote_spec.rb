@@ -1,45 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe Vote, type: :model do
-  let(:student) { Student.create(first_name: "Conor", last_name: "Burke", email: "conor@gmail.com") }
+  let(:city) { City.create(name: "San Diego") }
+  let(:cohort) { Cohort.create(name: "chipmunks-2016", city_id: city.id) }
+  let(:student) { Student.create(first_name: "Conor", last_name: "Burke", email: "conor@gmail.com", access_code: "1234", cohort_id: 1, group_id: 1) }
   let(:idea) { Idea.create(title: "idea", student_id: student.id) }
   let(:choice) {Choice.create(student_id: student.id, idea_id: idea.id, preference_level: 3)}
-  let(:vote) {Vote.create(student_id: student.id, idea_id: idea.id, round: 1)}
-
+  let(:round) {Round.create(voting_round: 1, cohort_id: 1)}
+  let(:vote) {Vote.create(student_id: student.id, idea_id: idea.id, round_id: 1)}
   describe "attributes" do
-    it 'has a title' do
-      expect(idea.title).to eq "idea"
-    end
 
     it 'has a student_id' do
-      expect(idea.student_id).to eq(student.id)
+      expect(vote.student_id).to eq student.id
     end
 
-    it 'has a round number' do
-      expect(idea.round).to eq 1
+    it 'has a idea_id' do
+      expect(vote.idea_id).to eq idea.id
+    end
+
+    it 'has a round id' do
+      expect(vote.round_id).to eq 1
     end
   end
 
   describe "associations" do
-    it 'has a student with a first name' do
-      expect(idea.student.first_name).to eq("Conor")
+    it 'belongs to a student' do
+      expect(vote.student).to eq student
     end
 
-    it 'has a student with a last name' do
-      expect(idea.student.last_name).to eq("Burke")
+    it 'belongs to a round' do
+      expect(vote.round).to eq round
     end
 
-    it 'has a student with a email' do
-      expect(idea.student.email).to eq("conor@gmail.com")
+    it 'belongs to an idea' do 
+      expect(vote.idea).to eq idea
     end
 
-    it 'has choices' do
-      expect(idea.choices).to include(choice)
-    end
-
-    it 'has votes' do
-      expect(idea.votes).to include(vote)
-    end
   end
 
   describe "validations" do
