@@ -14,4 +14,8 @@ class Student < ApplicationRecord
   def full_name
     self.first_name + " " + self.last_name
   end
+
+  def authenticate(password)
+    self if self.access_code == password
+  end
 end
