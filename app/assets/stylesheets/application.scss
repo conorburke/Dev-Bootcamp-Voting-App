@@ -20,10 +20,6 @@
   }
 }
 
-@media (min-width: 768) {
-
-}
-
 // body {
 //     background-image: url();
 //     background-size: 70%;
@@ -36,6 +32,10 @@ html,body {
     -o-background-size: cover;      /* Opera*/
     background-size: cover;         /* Generic*/
     height: 100%;
+}
+
+.container {
+  margin-top: 90px;
 }
 
 form {
@@ -58,6 +58,8 @@ table {
   filter: alpha(opacity=60);
 }
 
+
+
 .left {
   float: left;
 }
@@ -66,8 +68,20 @@ table {
   float: right;
 }
 
+.header-logo a{
+  font-size: 70px;
+}
+.page-header {
+  margin-top: 5px;
+  margin-bottom: 40px;
+}
+
+.page-header a:hover {
+    text-decoration: none;
+}
+
 .welcome-btn {
-  margin-top: 25%;
+  margin-top: 15%;
   padding-top: 40px;
   padding-bottom: 40px;
   padding-left: 100px;
@@ -105,19 +119,6 @@ table {
   margin-top: 10px;
 }
 
-.header-logo a{
-  font-size: 70px;
-  // margin-left: 29%;
-}
-
-.page-header {
-  margin-top: 5px;
-  margin-bottom: 40px;
-}
-
-.page-header a:hover {
-    text-decoration: none;
-}
 
 .idea-listing{
   font-size: 20px;
@@ -157,10 +158,10 @@ table {
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
   #footer {
     margin-left: -20px;
-    margin-right: -20px;
+    margin-right: 0px;
     padding-left: 20px;
     padding-right: 20px;
   }

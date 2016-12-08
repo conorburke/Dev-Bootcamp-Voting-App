@@ -15,3 +15,13 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+// $(document).ready(function(){
+//   $('.create-idea-btn').on('click','a.btn',function(event){
+//     event.preventDefault();
+//     url = $(this).closest('div').find('a').attr('href')
+//     $.get(url,function(response){
+//       console.log(response)
+//     })
+//   })
+// })
