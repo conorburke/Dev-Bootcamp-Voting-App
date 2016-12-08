@@ -76,4 +76,26 @@ RSpec.describe Student, type: :model do
       expect(student.choices).to include(choice)
     end
   end
+
+  describe "validations" do
+    it 'must have a first name' do
+      invalid_student = Student.create(last_name: "Lin", email: "chelsey@gmail.com", cohort_id: cohort.id)
+      expect(invalid_student.errors[:first_name]).to include "can't be blank"
+    end
+
+    it 'must have a last name' do
+      invalid_student = Student.create(first_name: "Chelsey", email: "chelsey@gmail.com", cohort_id: cohort.id)
+      expect(invalid_student.errors[:last_name]).to include "can't be blank"
+    end
+
+    it 'must have an email' do
+      invalid_student = Student.create(last_name: "Lin", first_name: "Chelsey", cohort_id: cohort.id)
+      expect(invalid_student.errors[:email]).to include "can't be blank"
+    end
+
+    it 'must have a valid cohort' do
+      invalid_student = Student.create(last_name: "Lin", first_name: "Chelsey", email: "chelsey@gmail.com", cohort_id: 0)
+      expect(invalid_student.errors[:cohort]).to include "can't be blank"
+    end
+  end
 end
