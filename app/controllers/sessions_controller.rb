@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:access_code])
       session[:user_id] = @user.id
       session[:user_type] = @user.class.to_s
-      redirect_to @user, notice: "User has successfully logged in."
+      redirect_to ideas_path, notice: "User has successfully logged in."
     else
       render :new, notice: "Email and password does not match."
     end
