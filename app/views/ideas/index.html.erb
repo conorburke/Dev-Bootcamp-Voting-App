@@ -1,29 +1,12 @@
-
-  <h3 class='headers text-center'>DBC Final Project Ideas</h3>
-
-  <ul>
+  <table class='table table-striped'>
+    <tr>
+      <th><h3 class='headers text-center'>DBC Final Project Ideas</h3></th>
+    </tr>
     <% @ideas.each do |idea| %>
-      <li><%= idea.title %></li>
+      <tr><td class="text-center idea-listing"><%= idea.title %></td></tr>
     <% end %>
-  </ul>
+  </table>
 
-  <div class="create-idea-btn" align="center">
-    <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg" %>
+  <div class="create-idea-btn btn-container" align="center">
+    <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg login-btn" %>
   </div>
-
-
-  <!-- On rows -->
-  <tr class="active">...</tr>
-  <tr class="success">...</tr>
-  <tr class="warning">...</tr>
-  <tr class="danger">...</tr>
-  <tr class="info">...</tr>
-
-  <!-- On cells (`td` or `th`) -->
-  <tr>
-    <td class="active">...</td>
-    <td class="success">...</td>
-    <td class="warning">...</td>
-    <td class="danger">...</td>
-    <td class="info">...</td>
-  </tr>

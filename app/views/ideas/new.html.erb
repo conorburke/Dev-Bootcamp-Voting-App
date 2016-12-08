@@ -1,19 +1,25 @@
-<h3>New Idea</h3>
+<div class="form-container">
+  <h3 class="text-center headers">New Idea</h3>
+  <%= form_for(@idea) do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class:"form-control" %>
+    </div>
 
-<%= form_for(@idea) do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-  <p><strong>Integration with login/logout feature required!!</strong></p>
-  <p>
-    <%= f.label :student_id %>
-    <%= f.text_field :student_id %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+    <div class="form-group">
+      <%= f.label :student_id %>
+      <%= f.text_field :student_id, class:"form-control" %>
+    </div>
 
-<% end %>
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      Integration with login/logout feature required!!
+    </div>
 
-<%= link_to 'Home', ideas_path %>
+    <div class="btn-container" align="center">
+      <%= f.submit class: "btn btn-primary btn-lg login-btn"%>
+    </div>
+  <% end %>
+
+</div>

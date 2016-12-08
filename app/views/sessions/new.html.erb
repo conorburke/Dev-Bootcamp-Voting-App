@@ -1,3 +1,4 @@
+
 <div class="form-container">
   <h3 class="text-center headers">Log In</h3>
   <%= form_for :session, url: { action: "create", controller: "sessions" }, :html => {:id => "log-in-form", :class => "log-in-form"} do |f|%>
@@ -10,7 +11,7 @@
       <%= f.label "Password" %>
       <%= f.password_field :access_code, class:"form-control" %><br>
     </div>
-    <div class="login-btn-container" align="center">
+    <div class="btn-container" align="center">
       <%= f.submit "Login", class: "btn btn-primary btn-lg login-btn" %>
     </div>
   <% end %>
