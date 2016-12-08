@@ -1,12 +1,13 @@
 class Vote < ApplicationRecord
   belongs_to :idea
   belongs_to :student
+  belongs_to :round
 
-  validates :idea, :student, :round, presence: true
+  validates :idea_id, :student_id, :round_id, presence: true
   validate :valid_vote
 
   def valid_vote
-    current_votes_for_student = Vote.where("student_id = ? AND round = ?", self.student_id, self.round)
+    current_votes_for_student = Vote.where("student_id = ? AND round_id = ?", self.student_id, self.round_id)
     unless current_votes_for_student.count < 3
       return errors.add :student, "can only vote 3 times each round"
     end
