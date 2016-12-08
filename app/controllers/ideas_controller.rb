@@ -19,21 +19,6 @@ class IdeasController < ApplicationController
     end
   end
 
-  def add_sessions
-    @ideas = Idea.all
-    @idea = Idea.find_by_id(params[:id])
-    if session[:selection]
-      if !session[:selection].include?(@idea.id)
-        session[:selection] << @idea.id
-      else
-        session[:selection].delete(@idea.id)
-      end
-    else
-      session[:selection] = [@idea.id]
-    end
-    render 'index'
-  end
-
   private
 
     def idea_params
