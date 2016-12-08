@@ -18,4 +18,8 @@ class SessionsController < ApplicationController
     session.delete(:user_type)
     redirect_to root_path
   end
+
+  def view_session
+    session.inspect
+  end
 end

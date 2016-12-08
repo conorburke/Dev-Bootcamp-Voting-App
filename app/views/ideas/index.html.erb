@@ -1,14 +1,31 @@
+<div class="create-idea-btn" align="center">
+  <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
+</div>
+
 <div class='table-container'>
-  <div class="create-idea-btn" align="center">
-    <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
-  </div>
   <div class ="jform"></div>
   <table class='table table'>
-    <tr>
-      <th><h3 class='headers text-center'>DBC Final Project Ideas</h3></th>
+    <tr class="idea-header">
+      <th colspan="3"><h3 class='headers text-center'>DBC Final Project Ideas</h3></th>
     </tr>
     <% @ideas.each do |idea| %>
-      <tr><td class="text-center idea-listing"><%= idea.title %></td></tr>
+
+      <tr class='idea-tr'>
+
+        <td align="center" class="bulb-col">
+            <i class="fa fa-lightbulb-o fa-3x bulb-btn" aria-hidden="true"></i>
+        </td>
+
+        <td class="text-center idea-listing"><span class="title-listing"><%= idea.title %><span></td>
+
+        <% if !session[:selection].include? idea.id %>
+          <td align="center" class="vote-col"><a href="/ideas/select/<%= idea.id %>" class= "btn btn-default btn-lg vote-btn">Vote</a></td>
+        <% else %>
+          <td align="center" class="vote-col"><a href="/ideas/select/<%= idea.id %>" class= "btn btn-success btn-lg vote-btn">Vote</a></td>
+        <% end %>
+
+      </tr>
+
     <% end %>
   </table>
 </div>

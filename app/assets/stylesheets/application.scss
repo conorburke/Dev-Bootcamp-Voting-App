@@ -13,6 +13,8 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 @media (min-width: 1200px) {
   .container {
@@ -38,6 +40,8 @@ html,body {
   margin-top: 90px;
 }
 
+
+
 form {
   padding: 0px 30px 80px 30px;
   background-color: white;
@@ -53,12 +57,18 @@ nav {
 }
 
 table {
-  background-color: white;
   opacity: .85;
   filter: alpha(opacity=60);
 }
 
+.idea-header{
+  color: white;
+  background-color: #428bca;
+}
 
+.idea-tr{
+  background-color: white;
+}
 
 .left {
   float: left;
@@ -122,6 +132,9 @@ table {
 
 .idea-listing{
   font-size: 20px;
+  width: 200px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .form-idea{
@@ -165,4 +178,34 @@ table {
     padding-left: 20px;
     padding-right: 20px;
   }
+}
+
+.list-btn{
+  margin: 0 auto;
+}
+
+.vote-btn{
+  opacity: .9;
+  margin-top: 10px;
+}
+
+.bulb-btn{
+  margin-top: 13px;
+}
+
+.vote-col{
+  width: 100px;
+}
+
+.bulb-col{
+  width: 100px;
+}
+
+.idea-tr{
+  height: 80px;
+}
+
+.title-listing{
+  margin-top: 100px;
+  vertical-align: middle;
 }
