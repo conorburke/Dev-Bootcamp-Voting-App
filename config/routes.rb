@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/session-viewer' => "sessions#view_session"
 
-  get '/ideas/select/:id' => "ideas#add_sessions"
+  get '/sessions/select/:id' => "sessions#add_sessions"
 
   get '/ideas' => "ideas#index"
   get '/ideas/new' => "ideas#new"
