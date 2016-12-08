@@ -1,6 +1,7 @@
 <div class="form-container">
-  <h3 class="text-center headers">New Idea</h3>
+
   <%= form_for(@idea) do |f| %>
+    <h3 class="text-center headers">New Idea</h3>
     <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class:"form-control" %>

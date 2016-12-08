@@ -1,4 +1,9 @@
-  <table class='table table-striped'>
+<div class='table-container'>
+  <div class="create-idea-btn" align="center">
+    <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
+  </div>
+
+  <table class='table table'>
     <tr>
       <th><h3 class='headers text-center'>DBC Final Project Ideas</h3></th>
     </tr>
@@ -6,7 +11,4 @@
       <tr><td class="text-center idea-listing"><%= idea.title %></td></tr>
     <% end %>
   </table>
-
-  <div class="create-idea-btn btn-container" align="center">
-    <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg login-btn" %>
-  </div>
+</div>

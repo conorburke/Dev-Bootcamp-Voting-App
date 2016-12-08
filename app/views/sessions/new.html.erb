@@ -1,7 +1,7 @@
 
 <div class="form-container">
-  <h3 class="text-center headers">Log In</h3>
   <%= form_for :session, url: { action: "create", controller: "sessions" }, :html => {:id => "log-in-form", :class => "log-in-form"} do |f|%>
+    <h3 class="text-center headers">Log In</h3>
     <div class="form-group">
       <%= f.label "Email" %>
       <%= f.text_field :email, class:"form-control" %><br>
@@ -12,7 +12,7 @@
       <%= f.password_field :access_code, class:"form-control" %><br>
     </div>
     <div class="btn-container" align="center">
-      <%= f.submit "Login", class: "btn btn-primary btn-lg login-btn" %>
+      <%= f.submit "Login", class: "btn btn-primary btn-lg medium-btn" %>
     </div>
   <% end %>
 </div>
