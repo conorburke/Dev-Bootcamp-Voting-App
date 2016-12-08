@@ -13,7 +13,7 @@ CCCT
 ##Description of project
 
 ###Model Schema
-![](readme-assets/schema.png)
+![](readme-assets/schema-2.png)
 
 ##How to install the code locally
 

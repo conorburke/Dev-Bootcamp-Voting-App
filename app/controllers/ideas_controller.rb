@@ -23,4 +23,3 @@ class IdeasController < ApplicationController
     end
 
 end
->>>>>>> origin/ideas-see-create
