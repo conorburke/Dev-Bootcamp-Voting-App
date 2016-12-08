@@ -6,5 +6,5 @@ class Cohort < ApplicationRecord
   has_many :ideas, through: :students
   has_many :groups, through: :ideas, source: :group
 
-  validates :name, presence: true
+  validates :name, :city, presence: true
 end
