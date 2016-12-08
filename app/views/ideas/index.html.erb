@@ -1,9 +1,12 @@
-<h1>DBC Final Project Ideas</h1>
 
-<ul>
-  <% @ideas.each do |idea| %>
-    <li><%= idea.title %></li>
-  <% end %>
-</ul>
+  <h3 class='headers text-center'>DBC Final Project Ideas</h3>
 
-<%= link_to "Create Idea", ideas_new_path %>
+  <ul>
+    <% @ideas.each do |idea| %>
+      <li><%= idea.title %></li>
+    <% end %>
+  </ul>
+
+  <div class="create-idea-btn" align="center">
+    <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg" %>
+  </div>

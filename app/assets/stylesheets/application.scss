@@ -14,7 +14,41 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.login-btn {
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+.welcome-btn {
   margin-top: 10%;
-  padding: 40px;
+}
+
+.create-idea-btn{
+  margin-top: 50px;
+}
+
+.login-btn {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.login-btn-container{
+  margin-top: 30px;
+}
+
+.form-container form{
+  padding-top: 20px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.headers{
+  margin-top: 30px;
+}
+
+.page-header a:hover {
+    text-decoration: none;
 }
