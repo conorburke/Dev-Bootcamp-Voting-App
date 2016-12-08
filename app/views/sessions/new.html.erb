@@ -1,0 +1,9 @@
+<div class="container">
+  <%= form_for :session, url: { action: "create", controller: "sessions" }, :html => {:id => "log-in-form"} do |f|%>
+    <%= f.label "Email" %>
+    <%= f.text_field :email %><br>
+    <%= f.label "Password" %>
+    <%= f.password_field :access_code %><br>
+    <%= f.submit "Login" %>
+  <% end %>
+</div>
