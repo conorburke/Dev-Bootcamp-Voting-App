@@ -9,8 +9,16 @@ RSpec.describe Vote, type: :model do
   let(:vote) { Vote.create(student_id: student.id, idea_id: idea.id, round_id: round.id) }
 
   describe "attributes" do
-    it 'has a title' do
-      expect(idea.title).to eq "idea"
+    it 'has a student_id' do
+      expect(vote.student_id).to eq student.id
+    end
+
+    it 'has an idea_id' do
+      expect(vote.idea_id).to eq idea.id
+    end
+
+    it 'has a round_id' do 
+      expect(vote.round_id).to eq round.id
     end
   end
 
