@@ -32,14 +32,19 @@ class SessionsController < ApplicationController
     @idea = Idea.find_by_id(params[:id])
     if session[:selection]
       if !session[:selection].include?(@idea.id)
-        session[:selection] << @idea.id
+        if session[:selection].count >= 3
+          flash[:error] = "You cannot vote more than 3 per round."
+          return redirect_to ideas_path
+        else
+          session[:selection] << @idea.id
+        end
       else
         session[:selection].delete(@idea.id)
       end
     else
       session[:selection] = [@idea.id]
     end
-    render 'ideas/index'
+    redirect_to ideas_path
   end
 
 end

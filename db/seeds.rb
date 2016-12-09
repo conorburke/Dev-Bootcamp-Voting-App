@@ -8,6 +8,6 @@
 
 city = City.create(name: "San Diego")
 cohort = Cohort.create(name: "chipmunks", city_id: city.id)
-teacher = Teacher.create(first_name: "Kevin", last_name: "Solorio", emails: "kevin@devbootcamp.com", city_id: city.id)
-student = Student.create(first_name: "John", last_name: "Smith", emails: "jsmith@gmail.com", cohort_id: cohort.id)
+teacher = Teacher.create(first_name: "Kevin", last_name: "Solorio", email: "kevin@devbootcamp.com", city_id: city.id)
+student = Student.create(first_name: "John", last_name: "Smith", email: "jsmith@gmail.com", cohort_id: cohort.id)
 idea = Idea.create(title: "good idea", student_id: student.id)

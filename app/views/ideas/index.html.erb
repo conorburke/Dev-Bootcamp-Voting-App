@@ -39,7 +39,7 @@
       <tr class='idea-tr'>
 
         <td align="center" class="bulb-col">
-          <% if voted_idea_this_round?(idea) || ((session[:selection] != nil) && (!session[:selection].include? idea.id)) %>
+          <% if voted_idea_this_round?(idea) || ((session[:selection] != nil) && (session[:selection].include? idea.id)) %>
             <i class="fa fa-lightbulb-o fa-3x bulb-btn yellow-bulb" aria-hidden="true"></i>
           <% else %>
             <i class="fa fa-lightbulb-o fa-3x bulb-btn" aria-hidden="true"></i>
@@ -48,7 +48,7 @@
 
         <td class="text-center idea-listing"><span class="title-listing"><%= idea.title %><span></td>
 
-          <% if voted_idea_this_round?(idea) || ((session[:selection] != nil) && (!session[:selection].include? idea.id)) %>
+          <% if voted_idea_this_round?(idea) || ((session[:selection] != nil) && (session[:selection].include? idea.id)) %>
             <td align="center" class="vote-col"><% if can_vote? %><a href="/sessions/select/<%= idea.id %>" class= "btn btn-success btn-lg vote-btn">Vote</a><% end %></td>
           <% else %>
             <td align="center" class="vote-col"><% if can_vote? %><a href="/sessions/select/<%= idea.id %>" class= "btn btn-default btn-lg vote-btn">Vote</a><% end %></td>
