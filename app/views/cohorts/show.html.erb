@@ -1,50 +1,56 @@
-<h3><%= @cohort.name %> - <%= @cohort.city.name %></h3>
-<div class="phase-switch-btn">
-<% if @phase == "ideas" %>
-  <% if @students.find { |student| student.current_access == "ideas" } %>
-      <%= link_to "Next Phase: Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary"%>
-  <% else %>
-    <%= link_to "Open Ideas Phase", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
-  <% end %>
-<% elsif @phase == "voting" %>
-  <p>Voting Round <%= @cohort.current_round %></p>
-  <% if @students.find { |student| student.current_access.include? "voting" } %>
-    <%= link_to "End Voting Round", round_path(@cohort.rounds.find_by_voting_round(@cohort.current_round)), method: :patch, class: "btn btn-primary" %>
-  <% elsif @cohort.rounds.find_by_voting_round(@cohort.current_round).votes.any? %>
-    <% if @cohort.ideas.select { |idea| idea.active? }.count <= 4 %>
-      <%= link_to "Next Phase: Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
+<div class="make-reset-cohorts">
+  <h3><span class="cohort-show-text"><%=@cohort.name.capitalize %> - <%= @cohort.city.name %></span></h3>
+  <div class="phase-switch-btn">
+  <% if @phase == "ideas" %>
+    <% if @students.find { |student| student.current_access == "ideas" } %>
+        <%= link_to "Next Phase: Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary"%>
     <% else %>
-      <%= link_to "Next Voting Round", rounds_path(cohort_id: @cohort.id), method: :post, class: "btn btn-primary" %>
+      <%= link_to "Open Ideas Phase", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
     <% end %>
-  <% else %>
-    <%= link_to "Open Voting Round", round_path(@cohort.rounds.find_by_voting_round(@cohort.current_round)), method: :patch, class: "btn btn-primary" %>
+  <% elsif @phase == "voting" %>
+    <p> </p>
+    <h4><span class="cohort-show-text">Voting Round <%= @cohort.current_round %></span></h4>
+    <% if @students.find { |student| student.current_access.include? "voting" } %>
+      <%= link_to "End Voting Round", round_path(@cohort.rounds.find_by_voting_round(@cohort.current_round)), method: :patch, class: "btn btn-primary" %>
+    <% elsif @cohort.rounds.find_by_voting_round(@cohort.current_round).votes.any? %>
+      <% if @cohort.ideas.select { |idea| idea.active? }.count <= 4 %>
+        <%= link_to "Next Phase: Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Next Voting Round", rounds_path(cohort_id: @cohort.id), method: :post, class: "btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <%= link_to "Open Voting Round", round_path(@cohort.rounds.find_by_voting_round(@cohort.current_round)), method: :patch, class: "btn btn-primary" %>
+    <% end %>
+  <% elsif @phase == "preference" %>
+    <% if @students.find { |student| student.current_access.include? "preference" } %>
+      <%= link_to "End Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Open Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
+    <% end %>
+  <% elsif @phase == "alteration" %>
+    <%= link_to "Alter Groups", cohort_groups_path(@cohort), class: "btn btn-primary" %>
   <% end %>
-<% elsif @phase == "preference" %>
-  <% if @students.find { |student| student.current_access.include? "preference" } %>
-    <%= link_to "End Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to "Open Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
-  <% end %>
-<% elsif @phase == "alteration" %>
-  <%= link_to "Alter Groups", cohort_groups_path(@cohort), class: "btn btn-primary" %>
-<% end %>
-</div>
-<div class="reset-cohort-btn">
-  <%= link_to "Reset Cohort", cohort_path(@cohort), method: :patch, class: "btn btn-primary" %>
-</div>
-<h4>Students</h4>
-<% if flash[:success] %>
-  <div class="alert alert-success" role="alert">
-    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-    <%= flash[:success] %>
   </div>
-<% end %>
-<ul>
-  <% @students.each do |student| %>
-    <li><%= student.full_name %> | <%= student.email %></li>
+  <p>   </p>
+  <div class="reset-cohort-btn">
+    <%= link_to "Reset Cohort", cohort_path(@cohort), method: :patch, class: "btn btn-danger" %>
+  </div>
+</div>
+<div class="student-right">
+  <h4><span class="cohort-show-text">Students</span></h4>
+  <% if flash[:success] %>
+    <div class="alert alert-success" role="alert">
+      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <%= flash[:success] %>
+    </div>
   <% end %>
-</ul>
-<div class="create-student-btn">
-  <%= link_to "Add Student", new_cohort_student_path(@cohort), class: "btn btn-primary" %>
+  <ul>
+    <% @students.each do |student| %>
+      <li><span class="cohort-show-text"><%= student.full_name %> | <%= student.email %></span></li>
+    <% end %>
+  </ul>
+  <div class="create-student-btn">
+    <%= link_to "Add Student", new_cohort_student_path(@cohort), class: "btn btn-primary" %>
+  </div>
 </div>

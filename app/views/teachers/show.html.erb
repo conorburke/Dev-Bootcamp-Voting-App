@@ -1,16 +1,19 @@
 <div>
-  <h3>Cohorts</h3>
+  <h2><span class="cohort-show-text">Cohorts</span></h2>
+  <div>
+    <div class="create-cohort-btn">
+      <%= link_to "New Cohort", new_cohort_path, class: "btn btn-primary btn-lg text-left" %>
+      <p>  </p>
+    </div>
 
-  <div class="create-cohort-btn">
-    <%= link_to "New Cohort", new_cohort_path, class: "btn btn-primary" %>
+    <ul class="teacher-cohort-lists">
+      <% @cohorts.each do |cohort| %>
+        <li>
+          <%= link_to cohort.name.capitalize, cohort, class: "btn btn-info btn-lg text-left" %>
+          <span class="mark"><%= "Active Status" unless cohort.closed? %></span>
+          <p> </p>
+        </li>
+      <% end %>
+    </ul>
   </div>
-
-  <ul>
-    <% @cohorts.each do |cohort| %>
-      <li>
-        <%= link_to cohort.name, cohort %>
-        <span><%= "active" unless cohort.closed? %></span>
-      </li>
-    <% end %>
-  </ul>
 </div>
