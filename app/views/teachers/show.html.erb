@@ -4,7 +4,7 @@
   <ul>
     <% @cohorts.each do |cohort| %>
       <li>
-        <%= link_to cohort.name, root_path %>
+        <%= link_to cohort.name, cohort %>
         <span><%= "active" unless cohort.closed? %></span>
       </li>
     <% end %>
