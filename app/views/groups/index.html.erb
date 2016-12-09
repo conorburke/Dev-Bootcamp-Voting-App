@@ -1,0 +1,19 @@
+<div class="groups">
+  <div class="row">
+      <% @groups.each do |group| %>
+      <div class="col-md-4 group-lists" align="center">
+        <ul align="center" id="sortable1 group-<%=group.id%>" class="connectedSortable list-group">
+          <div class="group-label">
+            <span><%= group.name %></span>
+          </div>
+        <% group.students.each do |student| %>
+          <li class="list-group-item" id="student-<%=student.id%>"><%=student.full_name%></li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+  </div>
+</div>
+<div class="submit-group" align="center">
+  <%= link_to "Save Group", groups_path, method: :put,  class: "btn btn-primary btn-lg medium-btn grp-btn" %>
+</div>
