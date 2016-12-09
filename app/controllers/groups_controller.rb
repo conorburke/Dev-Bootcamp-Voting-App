@@ -1,12 +1,13 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.all
+    @cohort = Cohort.find_by_id(params[:cohort_id])
+    @groups = @cohort.groups
   end
 
-  def create
-    p request
-    redirect_to groups_path
-  end
+  # def create
+  #   p request
+  #   redirect_to groups_path
+  # end
 
   def update
     if request.xhr?

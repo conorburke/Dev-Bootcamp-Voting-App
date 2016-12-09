@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   root :to => "home#index"
 
   get '/session-viewer' => "sessions#view_session"
-  resources :groups, only: [:index, :create]
   get '/sessions/select/:id' => "sessions#add_sessions"
 
   put '/groups' => "groups#update"
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
   resources :teachers, only: [:show]
   resources :cohorts, only: [:new, :create, :show, :update] do
     resources :students, only: [:new, :create]
+    resources :groups, only: [:index, :create]
   end
   resources :rounds, only: [:create, :update]
   resources :votes, only: [:create]

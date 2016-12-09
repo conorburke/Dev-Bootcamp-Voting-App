@@ -100,8 +100,15 @@ $(document).ready(function(){
       }})
     })
 
-    $( "ul.connectedSortable").sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
+  $("ul.simple_with_drop").sortable({
+    group: 'no-drop',
+    handle: 'li',
+    onDragStart: function ($item, container, _super) {
+      // Duplicate items of the no drop area
+      if(!container.options.drop)
+        $item.clone().insertAfter($item);
+        _super($item, container);
+    }
+  });
 
 })
