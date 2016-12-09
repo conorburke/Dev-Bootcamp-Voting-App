@@ -9,18 +9,25 @@
     <% if can_vote? %>
       <div align="center" class="remain-sign" align="center">
         <div class="alert alert-info remain-box" role="alert">
-          <span>
+          <span id="remaining-vote">
             Remaining Votes:
-            <% if session[:selection] %>
-              <%= 3 - session[:selection].count %>
-            <% else %>
-              3
-            <% end %>
-          </span>
-          <span>
-            <%= flash[:error] %>
+              <% if session[:selection] %>
+                <span id="num-remaining"><%= 3 - session[:selection].count %></span>
+              <% else %>
+                <span id="num-remaining">3</span>
+              <% end %>
           </span>
         </div>
+      </div>
+
+      <div id="remaining-vote-error">
+        <% if flash[:error] %>
+          <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <%= flash[:error] %>
+          </div>
+        <% end %>
       </div>
     <% end %>
 <% end %>
@@ -46,9 +53,9 @@
         <td class="text-center idea-listing"><span class="title-listing"><%= idea.title %><span></td>
 
           <% if voted_idea_this_round?(idea) || ((session[:selection] != nil) && (session[:selection].include? idea.id)) %>
-            <td align="center" class="vote-col"><% if can_vote? %><a href="/sessions/select/<%= idea.id %>" class= "btn btn-success btn-lg vote-btn">Vote</a><% end %></td>
+            <td align="center" class="vote-col"><% if can_vote? %><a id="<%= idea.id %>" href="/sessions/select/<%= idea.id %>" class= "btn btn-success btn-lg vote-btn">Vote</a><% end %></td>
           <% else %>
-            <td align="center" class="vote-col"><% if can_vote? %><a href="/sessions/select/<%= idea.id %>" class= "btn btn-default btn-lg vote-btn">Vote</a><% end %></td>
+            <td align="center" class="vote-col"><% if can_vote? %><a id="<%= idea.id %>" href="/sessions/select/<%= idea.id %>" class= "btn btn-default btn-lg vote-btn">Vote</a><% end %></td>
           <% end %>
       </tr>
 

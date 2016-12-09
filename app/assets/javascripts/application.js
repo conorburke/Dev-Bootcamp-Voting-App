@@ -24,7 +24,60 @@ $(document).ready(function(){
 //       console.log(response)
 //     })
 //   })
+  $('.table-container').on('click','a.btn',function(event){
+    event.preventDefault();
+
+    var url = $(this).closest('td').find('a').attr('href')
+    var id = $(this).closest('td').find('a').attr('id')
+    var button = $(this).closest('td').find('a')
+    var bulb = $(this).closest('tr').find('.bulb-btn')
+
+    //for vote button
+    var checkVote = function(){
+      if ($(button).hasClass('btn-default')){
+          $(button).removeClass('btn-default');
+          $(button).addClass('btn-success');
+      } else if($(button).hasClass('btn-success')) {
+        $(button).removeClass('btn-success')
+        $(button).addClass('btn-default');
+      }
+    }
+
+    var checkBulb = function(){
+      if ($(bulb).hasClass('yellow-bulb')){
+          $(bulb).removeClass('yellow-bulb');
+      } else {
+        $(bulb).addClass('yellow-bulb');
+      }
+    }
 
 
+    data = {id: id}
+    $.ajax({
+      url: url,
+      method: "GET",
+      data: data,
+      success: function(data){
+        var numRemaining = $(data).find('#num-remaining').text()
+        var error = $(data).find('.alert-danger')
+
+        if(error.text().trim() != ""){
+          $('.alert-danger').remove()
+          $('#remaining-vote-error').append(error)
+        } else {
+          checkVote()
+          checkBulb()
+          $('.alert-danger').remove()
+        }
+
+        //for remaining vote sign
+        var remaining = $(data).find('#remaining-vote').text()
+        $('#remaining-vote').html(remaining)
+
+      },
+      error: function(data){
+
+      }})
+    })
 
 })
