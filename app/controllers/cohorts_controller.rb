@@ -23,6 +23,10 @@ class CohortsController < ApplicationController
     @phase = @cohort.current_phase
   end
 
+  # def edit
+  #   @cohort = Cohort.find_by_id(params[:id])
+  # end
+
   def update
     @cohort = Cohort.find_by_id(params[:id])
     @cohort.votes.each { |vote| vote.destory }

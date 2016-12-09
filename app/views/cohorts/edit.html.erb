@@ -1,0 +1,24 @@
+<div class="form-container">
+  <%= form_for @cohort, edit_cohort_path(@cohort, action: "fill"), :html => {:id => "new-cohort-form", :class => "new-cohort-form"} do |f|%>
+    <div class="form-group">
+      <%= f.label "Name" %>
+      <%= f.text_field :name, class:"form-control" %><br>
+    </div>
+
+    <div class="alert alert-info" role="alert">
+      City: <%= current_user.city.name %>
+    </div>
+
+    <% if flash[:fail] %>
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <%= flash[:fail] %>
+      </div>
+    <% end %>
+
+    <div class="btn-container" align="center">
+      <%= f.submit "submit", class: "btn btn-primary btn-lg medium-btn" %>
+    </div>
+  <% end %>
+</div>
