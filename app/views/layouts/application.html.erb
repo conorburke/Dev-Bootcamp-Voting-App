@@ -14,12 +14,12 @@
         <nav>
           <div class="page-header container">
             <div class="row">
-              <div class="col-md-11">
+              <div class="col-md-10">
                 <h1 class="header-logo"><a href="/">DBC <small>Final project</small></a></h1>
               </div>
 
               <% if current_user %>
-                <div class="col-md-1 menu-toggle">
+                <div class="col-md-2 menu-toggle">
                   <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle menu-dd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span><%= current_user.full_name %></span>
@@ -42,6 +42,7 @@
       <div id="push"></div>
       </div>
     </div>
+
     <div id="footer">
        <div class="container">
          <span>Copyright</span>
