@@ -23,4 +23,8 @@ class Idea < ApplicationRecord
   def active?
     self.active == 1
   end
+
+  def vote_count(round)
+    self.votes.select { |vote| vote.round == round }.count
+  end
 end
