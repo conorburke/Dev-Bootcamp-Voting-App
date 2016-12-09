@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       session[:user_type] = @user.class.to_s
       flash[:sucess] = "User has successfully logged in."
-      redirect_to ideas_path
+      redirect_to ideas_path if current_user.is_a? Student
+      redirect_to current_user if current_user.is_a? Teacher
     else
       flash[:fail] = "Email and password does not match."
       redirect_to new_session_path

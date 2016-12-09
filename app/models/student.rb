@@ -31,4 +31,8 @@ class Student < ApplicationRecord
   def assigned?
     !!(self.group)
   end
+
+  def votes_this_round
+    self.votes.select { |vote| vote.round_id == self.current_access[-1].to_i}
+  end
 end

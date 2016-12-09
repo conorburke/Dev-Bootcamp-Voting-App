@@ -23,7 +23,10 @@ class IdeasController < ApplicationController
     @ideas = Idea.all
     @idea = Idea.find_by_id(params[:id])
     if session[:selection]
-      if !session[:selection].include?(@idea.id)
+      if session[:selection].count >= 3
+        flash[:error] = "Student can only vote 3 ideas each round."
+        redirect_to ideas_path
+      elsif !session[:selection].include?(@idea.id)
         session[:selection] << @idea.id
       else
         session[:selection].delete(@idea.id)
