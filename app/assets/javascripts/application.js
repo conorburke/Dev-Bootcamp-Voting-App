@@ -18,33 +18,41 @@
 
 $(document).ready(function(){
 
+
   $('.submit-group').on('click','a.grp-btn',function(event){
+    // event.preventDefault()
+
+
     var groups = $('ul.list-group')
-    var groupObj = {};
-    var groupArr;
-    var groupId;
+    var groupArr = {};
 
     for(var i = 0; i < groups.length; i++){
       var students = groups[i].children;
-      groupId = String(groups[i].getAttribute('id'))
-      groupId = groupId.slice(groupId.indexOf(' ')+1, groupId.length)
-      groupArr = [];
-      for(var x = 1; x <= (groups[i].children.length - 1); x++){
-        groupArr.push(students[x].getAttribute('id'));
+      var groupIdPhrase = groups[i].getAttribute('id')
+      var groupId = groupIdPhrase.substring(6, groupIdPhrase.length)
+      var studentsArray = [];
+      for(var j = 0; j < students.length; j++){
+        var studentIdPhrase = students[j].getAttribute('id');
+        var studentId = studentIdPhrase.substring(8, studentIdPhrase.length);
+        studentsArray.push(studentId);
       }
-      if(typeof groupArr !== undefined){
-        groupObj[groupId] = groupArr;
+      if(studentsArray[0] != undefined){
+        groupArr[groupId] = studentsArray;
       }
     }
-    var groupList = groupObj;
+    var cohortId = $("p#cohort_id").text();
+
+    var groupData = { groupObj: groupArr }
+
     $.ajax({
-      url: "/groups",
-      dataType:"json",
+      url: "/cohorts/" + cohortId + "/groups/" + 0,
+      dataType: "json",
       method: "put",
-      data: groupList
-    })
-    .done(function(msg){
-      console.log(msg);
+      data: groupData
+    }).done( function(msg) {
+      $(".submit-group").addClass("hidden");
+      $(".simple_with_drop").removeClass("simple_with_drop");
+      $(".alert").removeClass("hidden");
     })
     return false;
   })
@@ -68,7 +76,7 @@ $(document).ready(function(){
       data: studentPrefenceObj
     })
 
-    return false;
+    return false
   })
 
 

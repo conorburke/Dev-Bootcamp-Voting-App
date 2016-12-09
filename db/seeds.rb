@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-# City.delete_all
-# Cohort.delete_all
-# Teacher.delete_all
-# Student.delete_all
-# Idea.delete_all
-# Group.delete_all
+City.delete_all
+Cohort.delete_all
+Teacher.delete_all
+Student.delete_all
+Idea.delete_all
+Group.delete_all
 
 city = City.create(name: "San Diego")
 cohort = Cohort.create(name: "chipmunks", city_id: city.id)

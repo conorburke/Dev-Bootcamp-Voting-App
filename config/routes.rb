@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   get '/session-viewer' => "sessions#view_session"
   get '/sessions/select/:id' => "sessions#add_sessions"
 
-  put '/groups' => "groups#update"
-
   get '/ideas' => "ideas#index"
   get '/ideas/new' => "ideas#new"
   post '/ideas' => "ideas#create"
@@ -16,7 +14,7 @@ Rails.application.routes.draw do
   resources :teachers, only: [:show]
   resources :cohorts, only: [:new, :create, :show, :update] do
     resources :students, only: [:new, :create]
-    resources :groups, only: [:index, :create]
+    resources :groups, only: [:index, :create, :update]
   end
   resources :rounds, only: [:create, :update]
   resources :votes, only: [:create]
