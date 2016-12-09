@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
   def add_sessions
     @ideas = Idea.all
     @idea = Idea.find_by_id(params[:id])
+
     if session[:selection]
       if !session[:selection].include?(@idea.id)
         if session[:selection].count >= 3
