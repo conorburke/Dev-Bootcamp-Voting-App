@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root :to => "home#index"
 
   get '/session-viewer' => "sessions#view_session"
-
+  resources :groups, only: [:index, :create]
   get '/sessions/select/:id' => "sessions#add_sessions"
 
   get '/ideas' => "ideas#index"

@@ -17,16 +17,33 @@
 //= require bootstrap-sprockets
 
 $(document).ready(function(){
-//   $('.create-idea-btn').on('click','a.btn',function(event){
-//     event.preventDefault();
-//     url = $(this).closest('div').find('a').attr('href')
-//     $.get(url,function(response){
-//       console.log(response)
-//     })
-//   })
+
+  $('.submit-group').on('click','a.grp-btn',function(event){
+    var groups = $('ul.list-group')
+    var groupObj = {};
+    var groupArr;
+    var groupId;
+
+    for(var i = 0; i < groups.length; i++){
+      var students = groups[i].children;
+      groupId = String(groups[i].getAttribute('id'))
+      groupId = groupId.slice(groupId.indexOf(' ')+1, groupId.length)
+      groupArr = [];
+      for(var x = 1; x <= (groups[i].children.length - 1); x++){
+        groupArr.push(students[x].getAttribute('id'));
+      }
+      if(typeof groupArr !== undefined){
+        groupObj[groupId] = groupArr;
+      }
+    }
+    console.log(groupObj)
+    
+
+    return false;
+  })
+
   $('.table-container').on('click','a.btn',function(event){
     event.preventDefault();
-
     var url = $(this).closest('td').find('a').attr('href')
     var id = $(this).closest('td').find('a').attr('id')
     var button = $(this).closest('td').find('a')
@@ -42,7 +59,6 @@ $(document).ready(function(){
         $(button).addClass('btn-default');
       }
     }
-
     var checkBulb = function(){
       if ($(bulb).hasClass('yellow-bulb')){
           $(bulb).removeClass('yellow-bulb');
@@ -50,8 +66,6 @@ $(document).ready(function(){
         $(bulb).addClass('yellow-bulb');
       }
     }
-
-
     data = {id: id}
     $.ajax({
       url: url,
@@ -60,7 +74,6 @@ $(document).ready(function(){
       success: function(data){
         var numRemaining = $(data).find('#num-remaining').text()
         var error = $(data).find('.alert-danger')
-
         if(error.text().trim() != ""){
           $('.alert-danger').remove()
           $('#remaining-vote-error').append(error)
@@ -69,15 +82,16 @@ $(document).ready(function(){
           checkBulb()
           $('.alert-danger').remove()
         }
-
         //for remaining vote sign
         var remaining = $(data).find('#remaining-vote').text()
         $('#remaining-vote').html(remaining)
-
       },
       error: function(data){
-
       }})
     })
+
+    $( "ul.connectedSortable").sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
 
 })
