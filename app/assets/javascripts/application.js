@@ -36,9 +36,7 @@ $(document).ready(function(){
         groupObj[groupId] = groupArr;
       }
     }
-
     var groupList = groupObj;
-
     $.ajax({
       url: "/groups",
       dataType:"json",
@@ -48,9 +46,33 @@ $(document).ready(function(){
     .done(function(msg){
       console.log(msg);
     })
+    return false;
+  })
+
+
+  $('.submit-preference').on('click','a.prf-btn',function(event){
+    var ideas = $('span.title-listing');
+    var ideaCount = ideas.length
+    var ideasArr = [];
+    for(var i = 0; i < ideas.length; i++){
+      var ideaFull = ideas[i].getAttribute('id')
+      var ideaId = ideaFull.slice(ideaFull.indexOf('-')+1, ideaFull.length)
+      ideasArr.push(ideaId);
+    }
+    var studentPrefenceObj = {preference: ideasArr}
+
+    $.ajax({
+      url: "/choices",
+      dataType: "json",
+      method: "post",
+      data: studentPrefenceObj
+    })
 
     return false;
   })
+
+
+
 
   $('.table-container').on('click','a.btn',function(event){
     event.preventDefault();
