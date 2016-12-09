@@ -1,6 +1,10 @@
 <div>
-  <h2><% current_user.full_name %></h2>
   <h3>Cohorts</h3>
+
+  <div class="create-idea-btn">
+    <%= link_to "New Cohort", new_cohort_path, class: "btn btn-primary btn-lg medium-btn" %>
+  </div>
+
   <ul>
     <% @cohorts.each do |cohort| %>
       <li>

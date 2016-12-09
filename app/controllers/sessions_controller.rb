@@ -26,7 +26,6 @@ class SessionsController < ApplicationController
     session.inspect
   end
 
-
   def add_sessions
     @ideas = Idea.all
     @idea = Idea.find_by_id(params[:id])
