@@ -229,3 +229,31 @@ table {
 .yellow-bulb{
   color:yellow;
 }
+
+.list-group {
+  background-color: #428bca;
+  color: white;
+  width: 200px;
+}
+
+.list-group li {
+  color: black;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+}
+
+.submit-group{
+  margin-top: 50px;
+}
+
+.group-lists{
+  margin-bottom: 20px;
+}
+
+.group-label{
+  background-color: #428bca;
+  color: white;
+  width: 200px;
+  border-radius: 2px;
+}
