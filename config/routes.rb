@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :teachers, only: [:show]
   resources :cohorts, only: [:show]
   resources :rounds, only: [:create, :update]
+  resources :votes, only: [:create]
+  resources :phases, only: [:update]
 end
