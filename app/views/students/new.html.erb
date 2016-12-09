@@ -1,0 +1,34 @@
+<div class="form-container">
+  <%= form_for Student.new, url: { action: "create", controller: "students" }, :html => {:id => "new-student-form", :class => "new-student-form"} do |f|%>
+    <div class="form-group">
+      <%= f.label "First Name" %>
+      <%= f.text_field :first_name, class:"form-control" %><br>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Last Name" %>
+      <%= f.text_field :last_name, class:"form-control" %><br>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Email" %>
+      <%= f.text_field :email, class:"form-control" %><br>
+    </div>
+
+    <div class="alert alert-info" role="alert">
+      All fields required.
+    </div>
+
+    <% if flash[:fail] %>
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <%= flash[:fail] %>
+      </div>
+    <% end %>
+
+    <div class="btn-container" align="center">
+      <%= f.submit "Add New Student", class: "btn btn-primary btn-lg medium-btn" %>
+    </div>
+  <% end %>
+</div>

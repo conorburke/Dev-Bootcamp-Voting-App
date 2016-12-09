@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   post '/ideas' => "ideas#create"
   resources :sessions, only: [:new, :create, :destroy]
   resources :teachers, only: [:show]
-  resources :cohorts, only: [:show]
+  resources :cohorts, only: [:new, :create, :show, :update] do
+    resources :students, only: [:new, :create]
+  end
   resources :rounds, only: [:create, :update]
   resources :votes, only: [:create]
   resources :phases, only: [:update]
