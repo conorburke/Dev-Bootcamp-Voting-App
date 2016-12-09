@@ -5,10 +5,16 @@ class PhasesController < ApplicationController
     if phase == "ideas" && @cohort.students.find { |student| student.current_access == "ideas" }
       @cohort.next_phase
       @cohort.students.each { |student| student.current_access = ""; student.save }
-      redirect_to current_user
     elsif phase == "ideas"
       @cohort.students.each { |student| student.current_access = "ideas"; student.save }
-      redirect_to current_user
+    elsif phase == "voting"
+      @cohort.next_phase
+    elsif phase == "preference" && @cohort.students.find { |student| student.current_access == "preference" }
+      @cohort.next_phase
+      @cohort.students.each { |student| student.current_access = ""; student.save }
+    elsif phase == "preference"
+      @cohort.students.each { |student| student.current_access = "preference"; student.save }
     end
+    redirect_to @cohort
   end
 end

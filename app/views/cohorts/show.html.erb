@@ -19,6 +19,14 @@
   <% else %>
     <%= link_to "Open Voting Round", round_path(@cohort.rounds.find_by_voting_round(@cohort.current_round)), method: :patch, class: "btn btn-primary" %>
   <% end %>
+<% elsif @phase == "preference" %>
+  <% if @students.find { |student| student.current_access.include? "preference" } %>
+    <%= link_to "End Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Open Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
+  <% end %>
+<% elsif @phase == "alteration" %>
+  <%= link_to "Alter Groups", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
 <% end %>
 </div>
 <div class="reset-cohort-btn">
