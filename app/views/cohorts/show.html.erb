@@ -26,7 +26,7 @@
     <%= link_to "Open Preference Voting", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
   <% end %>
 <% elsif @phase == "alteration" %>
-  <%= link_to "Alter Groups", phase_path(cohort_id: @cohort.id), method: :patch, class: "btn btn-primary" %>
+  <%= link_to "Alter Groups", cohort_groups_path(@cohort), class: "btn btn-primary" %>
 <% end %>
 </div>
 <div class="reset-cohort-btn">

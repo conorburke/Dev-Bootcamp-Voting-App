@@ -2,13 +2,13 @@
   <div class="row">
       <% @groups.each do |group| %>
       <div class="col-md-4 group-lists" align="center">
-        <ul align="center" id="sortable1 group-<%=group.id%>" class="connectedSortable list-group">
-          <div class="group-label">
-            <span><%= group.name %></span>
-          </div>
-        <% group.students.each do |student| %>
-          <li class="list-group-item" id="student-<%=student.id%>"><%=student.full_name%></li>
-        <% end %>
+        <div class="group-label">
+          <%= group.name %> - <%= group.idea.title %>
+        </div>
+        <ul align="center" id="group-<%=group.id%>" class="simple_with_drop list-group">
+          <% group.students.each do |student| %>
+            <li class="list-group-item" id="student-<%=student.id%>"><%=student.full_name%></li>
+          <% end %>
         </ul>
       </div>
       <% end %>
