@@ -14,7 +14,7 @@
       <tbody>
         <% @ideas.each do |idea| %>
           <tr class='idea-tr'>
-            <td class="text-center idea-listing"><span class="title-listing"><%= idea.title %></span></td>
+            <td class="text-center idea-listing"><span id="idea-<%= idea.id %>" class="title-listing"><%= idea.title %></span></td>
           </tr>
         <% end %>
       </tbody>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="submit-preference" align="center">
-    <%= link_to "Submit", choices_path, method: :create,  class: "btn btn-primary btn-lg medium-btn grp-btn" %>
+    <%= link_to "Submit", choices_path, method: :create,  class: "btn btn-primary btn-lg medium-btn prf-btn" %>
   </div>
 <% else %>
   <% if current_user.is_a? Student %>
@@ -97,4 +97,3 @@
     </div>
   <% end %>
 <% end %>
-
