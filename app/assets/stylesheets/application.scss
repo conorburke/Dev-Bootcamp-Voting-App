@@ -280,3 +280,26 @@ ol.example li.placeholder:before {
   position: absolute;
   /** Define arrowhead **/
 }
+
+.teacher-cohort-lists{
+  padding-left: 0;
+}
+
+.cohort-show-text{
+  background-color: #D3D3D3;
+  border-radius: 10px;
+  padding: 3px;
+}
+@media screen and (min-width:1000px) {
+  .student-right{
+      position: absolute;
+      right: 30%;
+      margin-top: 15px;
+      clear: left;
+      display: inline-block;
+  }
+}
+
+.make-reset-cohorts{
+  display: inline-block;
+}
