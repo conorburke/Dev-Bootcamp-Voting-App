@@ -36,8 +36,18 @@ $(document).ready(function(){
         groupObj[groupId] = groupArr;
       }
     }
-    console.log(groupObj)
-    
+
+    var groupList = groupObj;
+
+    $.ajax({
+      url: "/groups",
+      dataType:"json",
+      method: "put",
+      data: groupList
+    })
+    .done(function(msg){
+      console.log(msg);
+    })
 
     return false;
   })

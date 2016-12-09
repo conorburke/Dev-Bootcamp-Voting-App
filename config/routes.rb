@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :groups, only: [:index, :create]
   get '/sessions/select/:id' => "sessions#add_sessions"
 
+  put '/groups' => "groups#update"
+
   get '/ideas' => "ideas#index"
   get '/ideas/new' => "ideas#new"
   post '/ideas' => "ideas#create"
