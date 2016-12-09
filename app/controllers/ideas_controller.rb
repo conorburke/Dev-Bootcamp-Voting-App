@@ -3,7 +3,7 @@ class IdeasController < ApplicationController
 
   def index
     @student = current_user
-    @ideas = @student.cohort.ideas
+    @ideas = @student.cohort.ideas.select {|idea| idea.active?}
   end
 
   def new
