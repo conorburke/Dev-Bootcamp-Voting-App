@@ -33,13 +33,31 @@ RSpec.describe Round, type: :model do
     end
 
     it 'has many ideas' do 
-      p vote
-      p round 
-      p idea
+      vote
+      round 
+      idea
       expect(round.ideas).to include(idea)
     end
   end
 
-  
+  describe 'validations' do 
+    it 'requires a cohort id' do 
+      invalid_round = Round.create()
+      expect(invalid_round.errors[:cohort_id]).to include "can't be blank"
+    end
 
+    it 'must have voting round greater than 0' do 
+      Cohort.create(name: "chipmunks", city_id: city.id)
+      invalid_round = Round.create(voting_round: 0, cohort_id: cohort.id)
+      expect(invalid_round.errors[:voting_round].first).to eq "must be greater than 0"
+    end
+  end
+
+  describe 'methods' do 
+    it 'auto-generates a voting round starting at 1 on creation' do
+      Cohort.create(name: "chipmunks", city_id: city.id)
+      round = Round.create(cohort_id: cohort.id)
+      expect(round.voting_round).to eq 1
+    end
+  end 
 end
