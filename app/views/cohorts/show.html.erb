@@ -1,0 +1,17 @@
+<h3><%= @cohort.name %></h3>
+<% if @phase == "voting" %>
+  <p>Voting Round <%= @cohort.current_round %></p>
+  <% if @students.find { |student| student.current_access.include? "voting" } %>
+    <%= link_to "End Voting Round", round_path(@cohort.rounds.find_by_voting_round(@cohort.current_round)), method: :patch %>
+  <% elsif @cohort.rounds.find_by_voting_round(@cohort.current_round).votes.any? %>
+    <%= link_to "Next Voting Round", rounds_path(cohort_id: @cohort.id), method: :post %>
+  <% else %>
+    <%= link_to "Open Voting Round", round_path(@cohort.rounds.find_by_voting_round(@cohort.current_round)), method: :patch %>
+  <% end %>
+<% end %>
+<h4>Students</h4>
+<ul>
+  <% @students.each do |student| %>
+    <li><%= student.full_name %> | <%= student.email %></li>
+  <% end %>
+</ul>
