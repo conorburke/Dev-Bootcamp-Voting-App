@@ -21,9 +21,11 @@
     </table>
   </div>
 
-  <div class="submit-preference" align="center">
-    <%= link_to "Submit", choices_path, method: :create,  class: "btn btn-primary btn-lg medium-btn prf-btn" %>
-  </div>
+<% if current_user.choices.empty? %>
+    <div class="submit-preference" align="center">
+      <%= link_to "Submit", choices_path, method: :create,  class: "btn btn-primary btn-lg medium-btn prf-btn" %>
+    </div>
+<% end %>
 <% else %>
   <% if current_user.is_a? Student %>
       <div class="create-idea-btn" align="center">

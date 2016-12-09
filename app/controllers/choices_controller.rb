@@ -5,6 +5,10 @@ class ChoicesController < ApplicationController
       idea_i = Idea.find_by_id(idea.to_i)
       idea_i.choices.create(student_id: current_user.id, preference_level: index + 1)
     end
-    redirect_to ideas_path
+    if request.xhr?
+      "done"
+    else
+      redirect_to ideas_path
+    end
   end
 end

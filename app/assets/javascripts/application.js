@@ -67,6 +67,9 @@ $(document).ready(function(){
       method: "post",
       data: studentPrefenceObj
     })
+    .done(function(msg){
+      $('.prf-btn').hide();
+    })
 
     return false;
   })
