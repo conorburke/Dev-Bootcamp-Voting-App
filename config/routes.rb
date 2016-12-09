@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   resources :rounds, only: [:create, :update]
   resources :votes, only: [:create]
   resources :phases, only: [:update]
+  resources :choices, only: [:create]
 end
