@@ -2,7 +2,8 @@ class IdeasController < ApplicationController
   before_action :require_login
 
   def index
-    @ideas = Idea.all
+    @student = current_user
+    @ideas = @student.cohort.ideas.select {|idea| idea.active?}
   end
 
   def new
@@ -49,4 +50,14 @@ class IdeasController < ApplicationController
       redirect_to new_session_path
     end
   end
+
+#   def inactivate_unpopular_ideas
+#     @student = current_user
+#     @ideas = @student.cohort.ideas
+#     @ideas.each do |idea|
+#       if idea.votes.count == 0 && idea.rounds.voting_round > 1
+#         idea.active = 0
+#       end
+#     end
+#   end
 end

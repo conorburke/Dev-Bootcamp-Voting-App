@@ -7,9 +7,15 @@ class RoundsController < ApplicationController
 
   def update
     @round = Round.find_by_id(params[:id])
+    # turn off voting
     if @round.cohort.students.find { |student| student.current_access == "voting #{@round.voting_round}" }
       @round.cohort.students.each { |student| student.current_access = ""; student.save }
+      active_ideas = @round.cohort.ideas.select { |idea| idea.active? }
+      active_ideas.each do |idea|
+        idea.update_attribute(:active, 0) unless @round.votes.find { |vote| vote.idea == idea }
+      end
       redirect_to current_user
+      # turn on voting
     else
       @round.cohort.students.each { |student| student.current_access = "voting #{@round.voting_round}"; student.save }
       redirect_to current_user
