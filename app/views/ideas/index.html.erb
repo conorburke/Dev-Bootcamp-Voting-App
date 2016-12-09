@@ -1,31 +1,28 @@
 
 <% if current_user.is_a? Student %>
-  <!-- <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4"> -->
       <div class="create-idea-btn" align="center">
         <% if current_user.current_access == "ideas" %>
           <%= link_to "Create Idea", ideas_new_path,  class: "btn btn-primary btn-lg medium-btn" %>
         <% end %>
-    <!-- </div> -->
-    <!-- <div class="col-md-4" align="center"> -->
+      </div>
+
     <% if can_vote? %>
-      <div class="alert alert-info remain-box" role="alert">
-        <span>
-          Remaining Votes:
-          <% if session[:selection] %>
-            <%= 3 - session[:selection].count %>
-          <% else %>
-            3
-          <% end %>
-        </span>
-        <span>
-          <%= flash[:error] %>
-        </span>
+      <div align="center" class="remain-sign" align="center">
+        <div class="alert alert-info remain-box" role="alert">
+          <span>
+            Remaining Votes:
+            <% if session[:selection] %>
+              <%= 3 - session[:selection].count %>
+            <% else %>
+              3
+            <% end %>
+          </span>
+          <span>
+            <%= flash[:error] %>
+          </span>
+        </div>
       </div>
     <% end %>
-    <!-- </div> -->
-  <!-- </div> -->
 <% end %>
 
 <div class='table-container'>

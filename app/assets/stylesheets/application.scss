@@ -54,11 +54,14 @@ nav {
   background-color: white;
   opacity: .85;
   filter: alpha(opacity=60);
+  margin-top: -10px;
+  margin-right: -20px;
 }
 
 table {
   opacity: .85;
   filter: alpha(opacity=60);
+  margin-bottom: 50px;
 }
 
 .idea-header{
@@ -143,6 +146,8 @@ table {
 
 .menu-toggle{
   margin-top: 35px;
+  // margin-right: px;
+  padding-left: 0;
 }
 
 .menu-dd{
@@ -162,12 +167,18 @@ table {
 #footer {
   height: 60px;
 }
+
+#push{
+  margin-bottom: 300px;
+}
+
 #footer {
   background-color: #f5f5f5;
-  padding: 0px 30px 50px 30px;
+  padding: 0px 25px 50px 30px;
   background-color: white;
   opacity: 0.85;
   filter: alpha(opacity=60);
+  margin-right: -10px;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
