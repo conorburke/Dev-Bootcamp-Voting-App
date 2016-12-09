@@ -11,7 +11,7 @@ class Student < ApplicationRecord
   before_validation :generate_access_code, on: :create
 
   def generate_access_code
-    if !self.access_code && self.first_name && self.last_name
+    if !self.access_code && self.first_name && self.last_name && !self.last_name.empty?
       self.access_code = (self.first_name + self.last_name[0]).downcase
     end
   end

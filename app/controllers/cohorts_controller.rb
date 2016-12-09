@@ -23,6 +23,15 @@ class CohortsController < ApplicationController
     @phase = @cohort.current_phase
   end
 
+  def update
+    @cohort = Cohort.find_by_id(params[:id])
+    @cohort.votes.each { |vote| vote.destory }
+    @cohort.rounds.each { |round| round.destroy }
+    @cohort.update_attribute(:current_phase, "ideas")
+    @cohort.students.each { |student| student.update_attribute(:current_access, "") }
+    redirect_to @cohort
+  end
+
   private
 
   def cohort_params

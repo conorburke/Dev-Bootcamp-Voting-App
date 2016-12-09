@@ -2,7 +2,8 @@ class IdeasController < ApplicationController
   before_action :require_login
 
   def index
-    @ideas = Idea.all
+    @student = current_user
+    @ideas = @student.cohort.ideas
   end
 
   def new
