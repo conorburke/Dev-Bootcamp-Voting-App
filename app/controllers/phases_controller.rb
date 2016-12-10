@@ -12,6 +12,7 @@ class PhasesController < ApplicationController
     elsif phase == "preference" && @cohort.students.find { |student| student.current_access == "preference" }
       @cohort.next_phase
       @cohort.students.each { |student| student.current_access = ""; student.save }
+      @cohort.students.each { |student| student.assign }
     elsif phase == "preference"
       @cohort.students.each { |student| student.current_access = "preference"; student.save }
     end

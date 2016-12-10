@@ -29,6 +29,8 @@
     <% end %>
   <% elsif @phase == "alteration" %>
     <%= link_to "Alter Groups", cohort_groups_path(@cohort), class: "btn btn-primary" %>
+  <% elsif @phase == "finished" %>
+    <%= link_to "View Groups", cohort_groups_path(@cohort), class: "btn btn-primary" %>
   <% end %>
   </div>
   <p>   </p>

@@ -32,7 +32,5 @@ for i in 0...4
 end
 p groups
 for i in 0...20
-  puts i/5
-  group = groups[i/5]
-  group.students.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, cohort_id: cohort.id)
+  Student.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, cohort_id: cohort.id)
 end

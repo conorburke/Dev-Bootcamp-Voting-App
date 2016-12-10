@@ -18,7 +18,7 @@ class Choice < ApplicationRecord
       return errors.add :student, "can't be blank"
     end
 
-    active_ideas = self.student.ideas.to_a.select { |idea| idea.active? }
+    active_ideas = self.student.cohort.ideas.to_a.select { |idea| idea.active? }
     unless self.preference_level <= active_ideas.length
       errors.add :preference_level, "cannot exceed total number of options"
     end
